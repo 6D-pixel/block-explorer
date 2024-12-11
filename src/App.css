@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+.loader {
+  --s: 25px;
+  --g :5px;  
+  
+  width: calc(3*(1.353*var(--s) + var(--g)));
+  display: grid;
+  justify-items: end;
+  aspect-ratio: 3;
+  overflow: hidden;
+  --_m: linear-gradient(90deg,#0000,#000 15px calc(100% - 15px),#0000);
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loader:before { 
+  content: "";
+  width: calc(4*100%/3);
+  background:
+  conic-gradient(from -90deg at var(--s) calc(0.353*var(--s)),
+      #fff 135deg,#666 0 270deg,#aaa 0); 
+  --_m:
+    linear-gradient(to bottom right,
+       #0000 calc(0.25*var(--s)),#000 0 calc(100% - calc(0.25*var(--s)) - 1.414*var(--g)),#0000 0),
+    conic-gradient(from -90deg at right var(--g) bottom var(--g),#000 90deg,#0000 0);
+   -webkit-mask: var(--_m);
+           mask: var(--_m);
+  background-size:   calc(100%/4) 100%;
+  -webkit-mask-size: calc(100%/4) 100%;
+          mask-size: calc(100%/4) 100%;
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+  animation: l8 1s infinite linear;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@keyframes l8 {
+  to {transform:translate(calc(100%/4))}
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loader-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: center;
+  position: fixed; /* Ensures it stays in the same position even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8); /* Optional background overlay */
+  z-index: 9999; /* Ensure it appears on top of other elements */
 }
