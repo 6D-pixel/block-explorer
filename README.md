@@ -1,4 +1,4 @@
-#image
+# Image
 ![image](https://github.com/user-attachments/assets/4e940930-894e-4ebb-a4c3-00fa4f062b75)
 - Need to add your own api for this application to work in .env (alchemy api provider for blockchain)
 # Ethereum Block Explorer
